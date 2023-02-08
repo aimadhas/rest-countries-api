@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/output.css">
+    <title>login</title>
+</head>
+
+<body class="h-screen w-full  flex justify-center items-center">
+    <section class=" h-screen w-full relative py-5 max-[680px]:hidden">
+        <div class="z-20 absolute w-full h-screen top-0 left-0 bg-blue-700 opacity-20 "></div>
+        <div class="backg z-10 absolute w-full h-screen top-0  left-0 opacity-100 "
+            style="background: url(/images/bg-2.jpg); background-size: cover; background-position: center;"></div>
+        <div class="backg z-10 absolute w-full h-screen top-0  left-0 opacity-0"
+            style="background: url(/images/bg-1.jpg); background-size: cover; background-position: center;"></div>
+        <div class="backg z-10 absolute w-full h-screen top-0  left-0 opacity-0"
+            style="background: url(/images/bg-3.jpg); background-size: cover; background-position: center;"></div>
+        <h1 class="uppercase text-4xl text-center text-white z-30 relative font-light">gamer<span
+                class="font-bold">kingdom</span>
+        </h1>
+        <div class="z-40 relative text-white w-3/4 mt-40 mx-auto text-center">
+            <h2 class="uppercase text-3xl mb-4">HELLO AGAIN GAMER..</h2>
+            <p class="text-s italic">Sing in and enjoy a realm of gaming and entertainment where the best gamers
+                come to
+                Play
+            </p>
+        </div>
+        <div class="Z-40 relative w-full h-auto text-center mt-10">
+            <a class=" z-40 relative bg-blue-700 py-2 text-white px-7 rounded-lg cursor-pointer hover:translate-y-1 hover:shadow-lg hover:duration-200"
+                href="index.html">REGISTER
+                NOW</a>
+        </div>
+        <div class="z-40 relative flex justify-center items-center mt-10 gap-3">
+            <div data-set="0" class="point w-[15px] h-[15px] rounded-[50%] cursor-pointer bg-white"></div>
+            <div data-set="1" class="point w-[15px] h-[15px] rounded-[50%] cursor-pointer bg-[#b9b9b9b4]"></div>
+            <div data-set="2" class="point w-[15px] h-[15px] rounded-[50%] cursor-pointer bg-[#b9b9b9b4]"></div>
+        </div>
+    </section>
+    <form class="form2 h-screen w-full px-10 py-10 flex flex-col justify-center">
+        <h2 class="text-center text-4xl font-bold text-[#596a73] mb-3">Welcome Back</h1>
+            <h2 class="text-center mb-3 text-blue-500 text-xl italic">login to your acount</h2>
+            <div class="flex-dev my-2">
+                <label class="label-dev">USER NAME</label>
+                <input placeholder="USER NAME" class="inp" id="user" type="text">
+                <p class="message text-red-500 text-s italic hidden">Please fill out this field</p>
+            </div>
+            <div class="flex-dev my-2 relative">
+                <label class="label-dev">PASSWORD</label>
+                <input placeholder="PASSWORD" class="inp" id="user-password" type="password">
+                <i class='absolute top-[35px] fa-solid fa-eye right-2 text-xl cursor-pointer'></i>
+                <p class="message text-red-500 text-s italic hidden">Please fill out this field</p>
+            </div>
+            <input
+                class="my-3 text-center bg-blue-500 py-2  text-white rounded-sm cursor-pointer active:translate-y-1 active:shadow-lg active:duration-200"
+                type="submit" value="LOGIN">
+            <hr class="my-6 border-t bg-slate-400">
+            <div class="flex flex-col gap-4 justify-center items-center">
+                <h2 class=" text-blue-500 text-s italic">or you can sign with</h2>
+                <div class="flex gap-2">
+                    <div
+                        class="h-10 w-10 rounded-[50%] bg-gray-50 flex justify-center items-center hover:bg-blue-700 duration-75 cursor-pointer ">
+                        <i class=' text-gray-300 text-xl hover:text-white  bx bxl-facebook'></i>
+                    </div>
+                    <div class="h-10 w-10 rounded-[50%] bg-gray-50 flex justify-center items-center hover:bg-red-700 ">
+                        <i class=' text-gray-300 hover:text-white duration-75 cursor-pointer text-xl bx bxl-google'></i>
+                    </div>
+                    <div
+                        class="h-10 w-10 rounded-[50%] bg-gray-50 flex justify-center items-center hover:bg-amber-400 h">
+                        <i
+                            class='hover:text-white duration-75 cursor-pointer text-gray-300 text-xl bx bxl-instagram'></i>
+                    </div>
+                </div>
+            </div>
+    </form>
+    <script src="https://kit.fontawesome.com/fb5de9f43c.js" crossorigin="anonymous"></script>
+    <script src="/javascript/script.js"></script>
+    <script src="/javascript/validation.js"></script>
+</body>
+
+</html>

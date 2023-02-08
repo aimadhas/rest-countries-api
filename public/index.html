@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/output.css">
+    <title>Registration Page</title>
+</head>
+<style>
+    .alert::before {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        bottom: -5px;
+        right: 5px;
+        background-color: rgb(220 38 38);
+        transform: rotate(140deg);
+    }
+
+    i:hover {
+        opacity: 1;
+    }
+</style>
+
+<body class="h-screen w-full flex  justify-center items-center">
+    <section class="photo max-[800px]:hidden h-full w-full relative py-5">
+        <div class="z-10 absolute w-full h-screen top-0 left-0 bg-blue-700 opacity-20 "></div>
+        <div class="z-20 absolute w-full h-screen top-0 left-0 bg-blue-700 opacity-20 "></div>
+        <div class="backg z-10 absolute w-full h-screen top-0  left-0 opacity-100 "
+            style="background: url(/images/bg1.jpg); background-size: cover; background-position: center;"></div>
+        <div class="backg z-10 absolute w-full h-screen top-0  left-0 opacity-0"
+            style="background: url(/images/bg2.jpg); background-size: cover; background-position: center;"></div>
+        <div class="backg z-10 absolute w-full h-screen top-0  left-0 opacity-0"
+            style="background: url(/images/bg3.jpg); background-size: cover; background-position: center;"></div>
+        <h1 class="uppercase text-4xl text-center text-white z-30 relative font-light">gamer<span
+                class="font-bold">kingdom</span>
+        </h1>
+        <div class="z-40 relative text-white w-3/4 mt-40 mx-auto text-center">
+            <h2 class="uppercase text-3xl mb-4">FIND GAMERS JUST LIKE YOU...</h2>
+            <p class="text-s italic">Sing up and enjoy a realm of gaming and entertainment where the best gamers
+                come to
+                Play
+            </p>
+        </div>
+        <div class="bubles z-40 relative flex justify-center items-center mt-10 gap-3">
+            <div data-set="0" class="point w-[15px] h-[15px] rounded-[50%] cursor-pointer bg-white"></div>
+            <div data-set="1" class="point w-[15px] h-[15px] rounded-[50%] cursor-pointer bg-[#b9b9b9b4]"></div>
+            <div data-set="2" class="point w-[15px] h-[15px] rounded-[50%] cursor-pointer bg-[#b9b9b9]"></div>
+        </div>
+    </section>
+    <form class="form1  z-50  w-full h-auto bg-white px-10 py-5">
+        <h1 class="text-center text-2xl mb-5">Create an Account!</h1>
+        <div class="flex-dev my-2 relative">
+            <label class="label-dev">FULL NAME</label>
+            <input placeholder="FULL NAME" class="inp" id="name" type="text">
+            <i class='absolute text-red-600 top-[30px] bx bxs-error-circle hidden  right-2 text-xl cursor-pointer'></i>
+            <div
+                class="hidden  justify-center items-center alert h-16 w-auto text-white text-s italic top-[-45px] absolute right-0 bg-red-600 py-2 px-4 rounded-sm max-[350px]:text-xs">
+                Please entre your fullname and don't use numbers or specific characters
+            </div>
+        </div>
+        <div class="flex-dev  relative  my-2">
+            <label class="label-dev">USER NAME</label>
+            <input class="inp" placeholder="USER NAME" id="user-name" type="text">
+            <i class='absolute text-red-600 top-[30px] bx bxs-error-circle hidden  right-2 text-xl cursor-pointer'></i>
+            <div
+                class="  justify-center items-center alert h-16 w-auto text-white text-s italic top-[-45px] absolute right-0 bg-red-600 py-2 px-4 rounded-sm hidden max-[350px]:text-xs">
+                please use at least 4 characters long and star whit letters
+            </div>
+        </div>
+        <div class="flex-dev my-2 relative">
+            <label class="label-dev">EMAIL</label>
+            <input class="inp" placeholder="EMAIL" id="email" type="email">
+            <i class='absolute text-red-600 top-[30px] bx bxs-error-circle hidden  right-2 text-xl cursor-pointer'></i>
+            <div
+                class=" justify-center items-center alert h-16 w-auto text-white text-s italic top-[-45px] absolute right-0 bg-red-600 py-2 px-4 rounded-sm hidden max-[350px]:text-xs">
+                Please fill out this field.
+            </div>
+        </div>
+        <div class="flex-dev my-2 relative">
+            <label class="label-dev">PASSWORD</label>
+            <input placeholder="PASSWORD***" class="inp" id="password" type="password">
+            <i class="absolute top-[35px] fa-solid fa-eye right-2 text-xl cursor-pointer fa-solid fa-eye"></i>
+            <i
+                class='pass absolute text-red-600 top-[30px] bx bxs-error-circle hidden  right-2 text-xl cursor-pointer'></i>
+            <div
+                class="  justify-center items-center alert h-16 w-auto text-white text-s italic top-[-45px] absolute right-0 bg-red-600 py-2 px-4 rounded-sm hidden max-[550px]:text-xs max-[300px]:text-[10px]">
+                Please fill out this field.
+            </div>
+            <p class="max-[1100px]:hidden  message text-blue-500 text-s italic">The password should
+                have more than 8
+                letter one should be
+                uppercase and one
+                number and
+                one specifique signe(@,-,-...)</p>
+        </div>
+        <div class="flex-dev my-2 relative">
+            <label class="label-dev">CONFIRM PASSWORD</label>
+            <input placeholder="CONFIRM PASSWORD***" class="inp" id="con-password" type="password">
+            <i class='absolute top-[35px] fa-solid fa-eye right-2 text-xl cursor-pointer'></i>
+            <i
+                class='pass absolute text-red-600 top-[30px] bx bxs-error-circle right-2 text-xl cursor-pointer hidden'></i>
+            <div
+                class="justify-center items-center alert h-16 w-auto text-white text-s italic top-[-45px] absolute right-0 bg-red-600 py-2 px-4 rounded-sm hidden max-[350px]:text-xs">
+                Please fill out this field.
+            </div>
+        </div>
+        <input
+            class="btnRegister w-full my-3 text-center bg-blue-500 py-2  text-white rounded-sm cursor-pointer active:translate-y-1 active:shadow-lg active:duration-200"
+            type="submit" value="Register Account">
+        <hr class="my-2 border-t bg-slate-400">
+        <div class="flex justify-center items-center text-center">
+            <a href="login.html" class=" text-blue-500 text-s italic hover:text-blue-900">Already have an
+                account?
+                Login!</a>
+        </div>
+    </form>
+    <script src="https://kit.fontawesome.com/fb5de9f43c.js" crossorigin="anonymous"></script>
+    <script src="/javascript/script.js"></script>
+    <script src="/javascript/validation.js"></script>
+</body>
+
+</html>
