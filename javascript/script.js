@@ -37,6 +37,21 @@ dark.addEventListener("click", () => {
 light.addEventListener("click", () => {
   modify('flex','none','black','fafafa','ffffff')
 })
+// creat the country card
+let cardcountry = function(one,two,three,four,five){
+  let c = `
+  <div class="dives w-[250px]  mb-7 shadow ">
+      <div class="img w-full h-36 mb-2" style="background-image: url(${one}); background-size: cover; background-position: center;"></div>
+      <div class="px-6 py-2">
+          <h1 class="name mb-3 text-xl uppercase font-medium">${two}</h1>
+          <p class="mb-2">Population : <span class="population">${three}</span></p>
+          <p class="mb-2">Region : <span class="region">${four}</span></p>
+          <p class="mb-2">Capital : <span class="capital">${five}</span></p>
+      </div>
+</div>
+  `
+         country.innerHTML += c
+}
 // display 50 country from the word randomly
 let displayall = async function(){
   try{
@@ -44,18 +59,7 @@ let displayall = async function(){
     let data = await respone.json()
     for(let i =0; i < 48; i++){
       let num1 = Math.floor(Math.random() * (250 - 0 + 1)) + 0;
-      let c = `<div class="dives w-[250px] bg-text-origin mb-7 shadow dark:bg-text-origin1 dark:text-white">
-            <div class="img w-full h-36 bg-black mb-2" style="background-image: url(${data[num1].flags.svg}); background-size: cover; background-position: center;"></div>
-            <div class="px-6 py-2">
-                <h1 class="mb-3 text-xl uppercase font-medium">${data[num1].name}</h1>
-                <p class="mb-2">Population : <span class="population">${data[num1].population}</span></p>
-                <p class="mb-2">Region : <span class="region">${data[num1].region}</span></p>
-                <p class="mb-2">Capital : <span class="capital">${data[num1].capital}</span></p>
-            </div>
-        </div>
-            `
-         country.innerHTML += c
-    }
+      cardcountry(data[num1].flags.svg,data[num1].name,data[num1].population,data[num1].region,data[num1].capital)    }
   }catch(error){
       console.error('Error fetching data:', error);
     }
@@ -65,24 +69,13 @@ let displayall = async function(){
       let respone = await fetch(`https://restcountries.com/v3.1/${way}/${name}`)
       let data =  await respone.json()
       data.forEach(function(data){
-        let c = `<div class="dives w-[250px] bg-text-origin mb-7 shadow dark:bg-text-origin1 dark:text-white">
-                <div class="img w-full h-36 bg-black mb-2" style="background-image: url(${data.flags.svg?data.flags.svg:data.flags.png}); background-size: cover; background-position: center;"></div>
-                <div class="px-6 py-2">
-                    <h1 class="mb-3 text-xl uppercase font-medium">${data.name.common}</h1>
-                    <p class="mb-2">Population : <span class="population">${data.population}</span></p>
-                    <p class="mb-2">Region : <span class="region">${data.region}</span></p>
-                    <p class="mb-2">Capital : <span class="capital">${data.capital}</span></p>
-                </div>
-            </div>
-                `
-             country.innerHTML += c
+        cardcountry(data.flags.svg,data.name.common,data.population,data.region,data.capital)
       })
     }catch(error){
       console.error('Error fetching data:', error);
     }
   }
 displayall()
-
 select.addEventListener("click", () => {
   const arrowdown = document.querySelector(".fa-down-long")
   const arrowup = document.querySelector(".fa-up-long")
@@ -111,4 +104,14 @@ search.addEventListener("keydown", (e) => {
     Findcountries('name',`${search.value}`)
     search.value = ""
   }
+})
+let isinfopage = false
+// give more information about the country
+country.addEventListener("click",function(e){
+   let name1 = e.target.parentElement.querySelector(".name").textContent
+   localStorage.setItem("name",name1)
+   let c = localStorage.getItem("name")
+   console.log(c)
+   isinfopage = true
+   window.location.assign("information.html")
 })

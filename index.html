@@ -32,16 +32,15 @@
     }
 </style>
 
-<body class="bg-text-secounder text-black font-roboto dark:bg-text-secounder2 dark:text-white">
-    <header
-        class="header flex justify-between w-full py-6 px-12 bg-text-origin items-center dark:bg-text-origin1 dark:text-white max-[450px]:px-6">
+<body class=" font-roboto bg-secounder text-white">
+    <header class="header flex justify-between w-full py-6 px-12 bg-origin items-center max-[450px]:px-6">
         <h1 class="text-2xl font-bold max-[450px]:text-sm">Where in the world?</h1>
         <div>
-            <div class="flex gap-2 items-center dark:hidden max-[450px]:gap-1">
+            <div class="gap-2 items-center hidden max-[450px]:gap-1">
                 <i class="fa-solid fa-moon block "></i>
                 <p class="max-[400px]:hidden">Dark Mode</p>
             </div>
-            <div class="hidden gap-2 items-center dark:flex max-[450px]:gap-1">
+            <div class="gap-2 items-center flex max-[450px]:gap-1">
                 <i class="fa-sharp fa-solid fa-sun"></i>
                 <p class="max-[400px]:hidden">Light Mode</p>
             </div>
@@ -49,20 +48,19 @@
     </header>
     <section class="mt-6 px-12">
         <div class="flex justify-between items-center w-full max-[740px]:flex-col max-[740px]:items-start">
-            <div class="w-[420px] relative dark:text-white max-[740px]:mb-4 max-[740px]:w-full">
+            <div class="w-[420px] relative text-white max-[740px]:mb-4 max-[740px]:w-full">
                 <input type="text" placeholder="Search for a country..." id="search"
-                    class="bg-text-origin w-full outline-none pl-10 py-2  rounded shadow-sm focus:shadow dark:text-white dark:bg-text-origin1">
+                    class="w-full outline-none pl-10 py-2  rounded shadow-sm focus:shadowtext-white bg-origin">
                 <i class="fa-sharp fa-solid fa-magnifying-glass text-lg absolute top-[10px] left-4  text-gray-500"></i>
             </div>
             <div class="relative cursor-pointer">
-                <div
-                    class="select flex items-center gap-3 bg-text-origin px-6 py-2 rounded shadow dark:bg-text-origin1 dark:text-white">
+                <div class="select flex items-center gap-3  px-6 py-2 rounded shadow bg-origin text-white">
                     <p class="show">Filter by Region</p>
                     <i class=" fa-solid fa-down-long text-sm"></i>
                     <i class="fa-sharp fa-solid fa-up-long text-sm " style="display: none;"></i>
                 </div>
                 <div
-                    class="selectors bg-text-origin absolute top-14 left-0 w-full shadow rounded-lg z-50 opacity-0 dark:bg-text-origin1 dark:text-white">
+                    class="selectors bg-origin absolute top-14 left-0 w-full shadow rounded-lg z-50 opacity-0 text-white">
                     <p class="hover:bg-blue-500 hover:rounded-t-lg hover:text-white border-b-2 px-6 py-2">Africa</p>
                     <p class="hover:bg-blue-500 hover:text-white border-b-2 px-6 py-2">America</p>
                     <p class="hover:bg-blue-500 hover:text-white border-b-2 px-6 py-2">Asia</p>
@@ -73,13 +71,14 @@
         </div>
     </section>
     <section class="country mt-6 px-12 flex max-[740px]:justify-center gap-[83px] flex-wrap">
-        <!-- <div class="w-[250px] bg-text-origin ml-7 mb-7">
-            <div class="img w-full h-36 bg-black mb-2" style="background-image: url();"></div>
+        <!-- <div class="dives w-[250px] bg-text-origin mb-7 shadow dark:bg-text-origin1 dark:text-white">
+            <div class="img w-full h-36 bg-black mb-2"
+                style="background-image: url(${one}); background-size: cover; background-position: center;"></div>
             <div class="px-6 py-2">
-                <h1 class="mb-3 text-xl uppercase font-medium">Iceland</h1>
-                <p class="mb-2">Population : <span class="population">334,300</span></p>
-                <p class="mb-2">Region : <span class="region">Europe</span></p>
-                <p class="mb-2">Capital : <span class="capital">Reykjavík</span></p>
+                <h1 class="name mb-3 text-xl uppercase font-medium">${two}</h1>
+                <p class="mb-2">Population : <span class="population">${three}</span></p>
+                <p class="mb-2">Region : <span class="region">${four}</span></p>
+                <p class="mb-2">Capital : <span class="capital">${five}</span></p>
             </div>
         </div> -->
     </section>

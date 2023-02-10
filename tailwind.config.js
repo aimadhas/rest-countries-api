@@ -1,16 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["index.html"],
+  content: ["index.html","information.html"],
   theme: {
     extend: {
       fontFamily : {
         roboto:['Roboto', 'sans-serif']
       },
       colors: {
-        'text-origin': '#ffffff',
-        'text-secounder': '#fafafa',
-        'text-origin1': '#2b3743',
-        'text-secounder2': '#202d36',
+        'origin1': '#ffffff',
+        'secounder1': '#fafafa',
+        'origin': '#2b3743',
+        'secounder': '#202d36',
       },
     },
   },
