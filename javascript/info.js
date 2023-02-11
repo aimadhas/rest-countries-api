@@ -7,7 +7,7 @@ const contenaire = document.querySelector(".countainer")
     console.log(data)
 let c = `<img src="${data.flags.png}" alt="" style="width: 550px;">
 <div class="info flex flex-col gap-9">
-    <h1 class="text-5xl  font-bold max-[450px]:text-3xl">${data.name.official}</h1>
+    <h1 class="name text-5xl  font-bold">${data.name.official}</h1>
         <div class="alldetails">
             <p class="mb-2 text-xl"> common Name : <span
               class="population text-lg">${data.name.common}</span></p>
@@ -18,7 +18,7 @@ let c = `<img src="${data.flags.png}" alt="" style="width: 550px;">
             <p class="curencies mb-2 text-xl">currencies : </p>
             <p class="language mb-2 text-xl">Languages :</p>
         </div>
-    <div class="borders flex gap-5  items-center max-[400px]:flex-wrap">
+    <div class="borders flex gap-5  items-center">
         <p class="text-xl">Border Countries:</p>
     </div>
 </div>`
