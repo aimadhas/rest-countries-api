@@ -1,3 +1,4 @@
+// Western Sahara
 const body = document.body
 const dark = document.querySelector(".fa-moon")
 const light = document.querySelector(".fa-sun")
@@ -5,6 +6,8 @@ const search = document.querySelector("#search")
 const country  = document.querySelector(".country")
 const select = document.querySelector(".select")
 const selectors = document.querySelector(".selectors")
+const alert = document.querySelector(".alert")
+
 let countrydata = []
 //function modifate mode
 let modify = function(none,flex,mode,origine,secondaire){
@@ -54,6 +57,17 @@ let cardcountry = function(data,one,two,three,four,five){
   `
          country.innerHTML += c
 }
+// errore message
+let error = function(mess){
+  const message = document.querySelector(".message")
+  const mark = document.querySelector(".fa-xmark")
+  message.textContent = `${mess}` 
+  alert.classList.replace("hidden","flex")
+  mark.addEventListener("click", () => {
+    alert.classList.replace("flex","hidden")
+    location.reload();
+  })
+}
 // display 50 country from the word randomly
 let displayall = async function(){
   try{
@@ -63,6 +77,9 @@ let displayall = async function(){
     for(let i =0; i < 48; i++){
       let num1 = Math.floor(Math.random() * (250 - 0 + 1)) + 0;
       countrydata.push(data[num1])
+      if(data[num1].name.common =="Western Sahara"){
+        continue;
+      }
       cardcountry(data[num1].area,data[num1].flags.svg,data[num1].name.common,data[num1].population,data[num1].region,data[num1].capital)  
       }
   }catch(error){
@@ -74,29 +91,42 @@ let displayall = async function(){
   let Findcountries =  async function(way,name){
     try{
       let respone = await fetch(`https://restcountries.com/v3.1/${way}/${name}`)
+      if(name.length == 0){
+        throw new Error('Please fill out this field.')
+      }
+      if(respone.status ==404 || name == "Western Sahara" || name == "Sahrawi Arab Democratic Republic"){
+        throw new Error('We were unable to find a country matching your search. Please make sure you have entered the correct name and try again')
+      }
       let data =  await respone.json()
       countrydata = data
-      data.forEach(function(data){
-        cardcountry(data.area,data.flags.svg,data.name.common,data.population,data.region,data.capital)
-      })
-    }catch(error){
-      console.error('Error fetching data:', error);
+      let newdata = data.filter(function(data){
+                return data.name.common !== "Western Sahara"
+              })
+              newdata.forEach(function(data){
+                cardcountry(data.area,data.flags.svg,data.name.common,data.population,data.region,data.capital)
+              })
+    }catch(err){
+      error(err.message)
     }
   }
 
 displayall()
 
-// select a spicify  region
+
+// // select a spicify  region
 select.addEventListener("click", () => {
   const arrowdown = document.querySelector(".fa-down-long")
   const arrowup = document.querySelector(".fa-up-long")
   const p = document.querySelector(".show")
-  if(selectors.classList.contains("opacity-0")){
-    selectors.classList.replace("opacity-0","opacity-1")
+  if(alert.classList.contains("flex")){
+    alert.classList.replace("flex","hidden")
+  }
+  if(selectors.classList.contains("hidden")){
+    selectors.classList.replace("hidden","block")
     arrowdown.style.display = "none"
     arrowup.style.display = "block"
   }else{
-    selectors.classList.replace("opacity-1","opacity-0")
+    selectors.classList.replace("block","hidden")
     arrowdown.style.display = "block"
     arrowup.style.display = "none"
   }
@@ -104,7 +134,7 @@ select.addEventListener("click", () => {
     p.textContent = e.target.textContent
     country.innerHTML = ""
     Findcountries('region',`${e.target.textContent}`)
-    selectors.classList.replace("opacity-1","opacity-0")
+    selectors.classList.replace("block","hidden")
     arrowdown.style.display = "block"
     arrowup.style.display = "none"
   })
@@ -131,4 +161,3 @@ country.addEventListener("click", (e) => {
     })
   }
 })
-

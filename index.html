@@ -59,8 +59,7 @@
                     <i class=" fa-solid fa-down-long text-sm"></i>
                     <i class="fa-sharp fa-solid fa-up-long text-sm " style="display: none;"></i>
                 </div>
-                <div
-                    class="selectors bg-origin absolute top-14 left-0 w-full shadow rounded-lg z-50 opacity-0 text-white">
+                <div class="selectors bg-origin absolute top-14 left-0 w-full shadow rounded-lg z-50 hidden text-white">
                     <p class="hover:bg-blue-500 hover:rounded-t-lg hover:text-white border-b-2 px-6 py-2">Africa</p>
                     <p class="hover:bg-blue-500 hover:text-white border-b-2 px-6 py-2">America</p>
                     <p class="hover:bg-blue-500 hover:text-white border-b-2 px-6 py-2">Asia</p>
@@ -68,6 +67,10 @@
                     <p class="hover:bg-blue-500 hover:rounded-b-lg hover:text-white px-6 py-2">Oceania</p>
                 </div>
             </div>
+        </div>
+        <div class="alert my-10 bg-red-700 px-4 py-4  items-center justify-between text-white hidden">
+            <p class="message max-[450px]:text-sm w-1/2">Please fill out this field.</p>
+            <i class="fa-solid fa-xmark cursor-pointer"></i>
         </div>
     </section>
     <section class="country mt-6 px-12 flex max-[740px]:justify-center gap-[83px] flex-wrap">
