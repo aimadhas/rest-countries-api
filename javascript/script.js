@@ -144,6 +144,9 @@ select.addEventListener("click", () => {
 search.addEventListener("keydown", (e) => {
   if(e.key == "Enter"){
     country.innerHTML = ""
+    if(alert.classList.contains("flex")){
+      alert.classList.replace("flex","hidden")
+    }
     Findcountries('name',`${search.value}`)
     search.value = ""
   }
