@@ -5,6 +5,7 @@ const search = document.querySelector("#search")
 const country  = document.querySelector(".country")
 const select = document.querySelector(".select")
 const selectors = document.querySelector(".selectors")
+let countrydata = []
 //function modifate mode
 let modify = function(none,flex,mode,origine,secondaire){
   const header = document.querySelector(".header")
@@ -38,15 +39,16 @@ light.addEventListener("click", () => {
   modify('flex','none','black','fafafa','ffffff')
 })
 // creat the country card
-let cardcountry = function(one,two,three,four,five){
+let cardcountry = function(data,one,two,three,four,five){
   let c = `
-  <div class="dives w-[250px]  mb-7 shadow ">
+  <div class="dives w-[250px]  mb-7 shadow cursor-pointer" data-id="${data}">
       <div class="img w-full h-36 mb-2" style="background-image: url(${one}); background-size: cover; background-position: center;"></div>
       <div class="px-6 py-2">
           <h1 class="name mb-3 text-xl uppercase font-medium">${two}</h1>
           <p class="mb-2">Population : <span class="population">${three}</span></p>
           <p class="mb-2">Region : <span class="region">${four}</span></p>
           <p class="mb-2">Capital : <span class="capital">${five}</span></p>
+          <a href="#" class="text-blue-500 link" >More information</a>
       </div>
 </div>
   `
@@ -55,27 +57,36 @@ let cardcountry = function(one,two,three,four,five){
 // display 50 country from the word randomly
 let displayall = async function(){
   try{
-    let respone = await fetch(`data.json`)
+    let respone = await fetch(`https://restcountries.com/v3.1/all`)
     let data = await respone.json()
+    // countrydata = data
     for(let i =0; i < 48; i++){
       let num1 = Math.floor(Math.random() * (250 - 0 + 1)) + 0;
-      cardcountry(data[num1].flags.svg,data[num1].name,data[num1].population,data[num1].region,data[num1].capital)    }
+      countrydata.push(data[num1])
+      cardcountry(data[num1].area,data[num1].flags.svg,data[num1].name.common,data[num1].population,data[num1].region,data[num1].capital)  
+      }
   }catch(error){
       console.error('Error fetching data:', error);
     }
   }
+
+  // function to find a country from the word
   let Findcountries =  async function(way,name){
     try{
       let respone = await fetch(`https://restcountries.com/v3.1/${way}/${name}`)
       let data =  await respone.json()
+      countrydata = data
       data.forEach(function(data){
-        cardcountry(data.flags.svg,data.name.common,data.population,data.region,data.capital)
+        cardcountry(data.area,data.flags.svg,data.name.common,data.population,data.region,data.capital)
       })
     }catch(error){
       console.error('Error fetching data:', error);
     }
   }
+
 displayall()
+
+// select a spicify  region
 select.addEventListener("click", () => {
   const arrowdown = document.querySelector(".fa-down-long")
   const arrowup = document.querySelector(".fa-up-long")
@@ -98,6 +109,8 @@ select.addEventListener("click", () => {
     arrowup.style.display = "none"
   })
 })
+
+// search for country by the name
 search.addEventListener("keydown", (e) => {
   if(e.key == "Enter"){
     country.innerHTML = ""
@@ -105,13 +118,17 @@ search.addEventListener("keydown", (e) => {
     search.value = ""
   }
 })
-let isinfopage = false
 // give more information about the country
-country.addEventListener("click",function(e){
-   let name1 = e.target.parentElement.querySelector(".name").textContent
-   localStorage.setItem("name",name1)
-   let c = localStorage.getItem("name")
-   console.log(c)
-   isinfopage = true
-   window.location.assign("information.html")
+country.addEventListener("click", (e) => {
+  if(e.target.classList.contains("link")){
+    e.preventDefault()
+    let id = e.target.parentNode.parentElement.dataset.id
+    countrydata.forEach(function(country){
+      if(country.area == id){
+        localStorage.setItem("name", JSON.stringify(country))
+        window.location.href ="information.html"
+      }
+    })
+  }
 })
+
