@@ -51,5 +51,5 @@ Start the server
 ```bash
   npm run test
 ```
-#Contributions
+# Contributions
 This project is open for contributions. If you have any ideas or suggestions, feel free to create a pull request.
