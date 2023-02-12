@@ -1,4 +1,3 @@
-// Western Sahara
 const body = document.body
 const dark = document.querySelector(".fa-moon")
 const light = document.querySelector(".fa-sun")
@@ -174,6 +173,3 @@ country.addEventListener("click", (e) => {
     })
   }
 })
-// localStorage.setItem("history",history)
-// console.log(history)
-// localStorage.setItem("history",JSON.stringify(history))
