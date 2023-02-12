@@ -120,15 +120,3 @@ border.forEach(function(b){
     Findcountries(`${b.textContent}`)
   })
 })
-
-
-// active the backword button
-// link.addEventListener("click", function(){
-//   let his = JSON.parse(localStorage.getItem("history"))
-//   console.log(his)
-//   if(his.length > 1){
-//     console.log('hello')
-//   }else{
-//     console.log('no')
-//   }
-// })
