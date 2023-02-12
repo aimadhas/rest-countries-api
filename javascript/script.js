@@ -7,7 +7,6 @@ const country  = document.querySelector(".country")
 const select = document.querySelector(".select")
 const selectors = document.querySelector(".selectors")
 const alert = document.querySelector(".alert")
-
 let countrydata = []
 //function modifate mode
 let modify = function(none,flex,mode,origine,secondaire){
@@ -33,13 +32,24 @@ let modify = function(none,flex,mode,origine,secondaire){
       search.style.color = `${mode}`
       header.style.color = `${mode}`
 }
+let c =JSON.parse(localStorage.getItem('lightmode'))
+if(c == true ){
+  modify('flex','none','black','fafafa','ffffff')
+}else{
+  modify('none','flex','white','2b3743','202d36')
+}
+let lightmode = false
 // ative darkmode
 dark.addEventListener("click", () => {
   modify('none','flex','white','2b3743','202d36')
+  lightmode = false
+  localStorage.setItem('lightmode',lightmode)
 })
 // active light mode
 light.addEventListener("click", () => {
   modify('flex','none','black','fafafa','ffffff')
+  lightmode = true
+  localStorage.setItem('lightmode',lightmode)
 })
 // creat the country card
 let cardcountry = function(data,one,two,three,four,five){
@@ -51,7 +61,7 @@ let cardcountry = function(data,one,two,three,four,five){
           <p class="mb-2">Population : <span class="population">${three}</span></p>
           <p class="mb-2">Region : <span class="region">${four}</span></p>
           <p class="mb-2">Capital : <span class="capital">${five}</span></p>
-          <a href="#" class="text-blue-500 link" >More information</a>
+          <a href="#" class="link" >More information</a>
       </div>
 </div>
   `
@@ -164,3 +174,6 @@ country.addEventListener("click", (e) => {
     })
   }
 })
+// localStorage.setItem("history",history)
+// console.log(history)
+// localStorage.setItem("history",JSON.stringify(history))

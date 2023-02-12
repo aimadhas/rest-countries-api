@@ -3,9 +3,45 @@ const dark = document.querySelector(".fa-moon")
 const light = document.querySelector(".fa-sun")
 const link = document.querySelector(".link")
 const contenaire = document.querySelector(".countainer")
-    const data = JSON.parse(localStorage.getItem("name"))
-    console.log(data)
-let c = `<img src="${data.flags.png}" alt="" style="width: 550px;">
+// let history = []
+let lightmode =JSON.parse(localStorage.getItem("lightmode"))
+//function modifate mode
+let modify = function(none,flex,secondaire,origine,color){
+  const header = document.querySelector(".header")
+  const bor = document.querySelectorAll(".bor")
+  body.style.background = `#${secondaire}`
+  body.style.color = `${color}`
+  header.style.background =`#${origine}`
+  dark.parentElement.style.display = `${none}`
+  light.parentElement.style.display = `${flex}`
+  link.style.background = `#${origine}`
+  link.style.color = `${color}`
+  bor.forEach(function(b){
+    b.style.background = `#${origine}`
+  })
+}
+if(lightmode == true ){
+  modify('flex','none','fafafa','ffffff',"black")
+}else{
+  modify('none','flex','202d36','2b3743',"white")
+}
+// ative darkmode
+dark.addEventListener("click", () => {
+  modify('none','flex','202d36','2b3743',"white")
+  lightmode = false
+  localStorage.setItem('lightmode',lightmode)
+})
+// active light mode
+light.addEventListener("click", () => {
+    modify('flex','none','fafafa','ffffff',"black")
+    lightmode = true
+    localStorage.setItem('lightmode',lightmode)
+  })
+  let  data = JSON.parse(localStorage.getItem("name"))
+  // history.push(data)
+  // localStorage.setItem("history",JSON.stringify(history))
+  // localStorage.setItem("history",JSON.stringify(history))
+  let c = `<img src="${data.flags.png}" alt="${data.flags.alt}" style="width: 550px;">
 <div class="info flex flex-col gap-9">
     <h1 class="name text-5xl  font-bold">${data.name.official}</h1>
         <div class="alldetails">
@@ -37,13 +73,17 @@ contenaire.innerHTML += c
 // add borders
 let para = document.querySelector(`.borders`)
 let values = data.borders
-for(let i = 0; i < values.length;i++){
-  console.log(i)
-  if(i == 3){
-    break
-  }else{
-    para.innerHTML += `<p class="bor px-6 py-1 rounded shadow bg-origin">${values[i]}</p>`
-  }
+// console.log(values)
+if(values == undefined){
+  para.innerHTML += `<p class="bor px-6 py-1 rounded shadow ">they are no borders</p>`
+}else{
+  for(let i = 0; i < values.length;i++){
+    if(i == 3){
+      break
+    }else{
+      para.innerHTML += `<p class="border cursor-pointer bor px-6 py-1 rounded shadow ">${values[i]}</p>`
+    }
+}
 }
 // add curencies
 let para3 = document.querySelector(".curencies")
@@ -56,26 +96,39 @@ for (let key in obj2) {
       para3.innerHTML += ` <span class="text-lg"> ${a.symbol} </span>`
   }
 }
-//function modifate mode
-let modify = function(none,flex,secondaire,origine,color){
-  const header = document.querySelector(".header")
-  const bor = document.querySelectorAll(".bor")
-      body.style.background = `#${secondaire}`
-      body.style.color = `${color}`
-      header.style.background =`#${origine}`
-      dark.parentElement.style.display = `${none}`
-      light.parentElement.style.display = `${flex}`
-      link.style.background = `#${origine}`
-      link.style.color = `${color}`
-      bor.forEach(function(b){
-        b.style.background = `#${origine}`
-      })
+
+// find the borders
+let Findcountries =  async function(name1){
+  try{
+    let respone = await fetch(`https://restcountries.com/v3.1/alpha/${name1}`)
+    let data1 =  await respone.json()
+    data = data1[0]
+    // history.push(data)
+    localStorage.setItem("name", JSON.stringify(data))
+    // localStorage.setItem("history",JSON.stringify(history))
+    window.location.reload()
+  }catch(err){
+    error(err.message)
+  }
 }
-// ative darkmode
-dark.addEventListener("click", () => {
-    modify('none','flex','202d36','2b3743',"white")
+
+
+// see more deatil about the border of the country
+const border = document.querySelectorAll(".border")
+border.forEach(function(b){
+  b.addEventListener("click", function(){
+    Findcountries(`${b.textContent}`)
   })
-  // active light mode
-  light.addEventListener("click", () => {
-    modify('flex','none','fafafa','ffffff',"black")
-  })
+})
+
+
+// active the backword button
+// link.addEventListener("click", function(){
+//   let his = JSON.parse(localStorage.getItem("history"))
+//   console.log(his)
+//   if(his.length > 1){
+//     console.log('hello')
+//   }else{
+//     console.log('no')
+//   }
+// })
