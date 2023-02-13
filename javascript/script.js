@@ -7,6 +7,8 @@ const country  = document.querySelector(".country")
 const select = document.querySelector(".select")
 const selectors = document.querySelector(".selectors")
 const alert = document.querySelector(".alert")
+const load = document.querySelector(".load")
+// array to stock data to avoid duplicte country
 let countrydata = []
 //function modifate mode
 let modify = function(none,flex,mode,origine,secondaire){
@@ -32,12 +34,6 @@ let modify = function(none,flex,mode,origine,secondaire){
       search.style.color = `${mode}`
       header.style.color = `${mode}`
 }
-let c =JSON.parse(localStorage.getItem('lightmode'))
-if(c == true ){
-  modify('flex','none','black','fafafa','ffffff')
-}else{
-  modify('none','flex','white','2b3743','202d36')
-}
 let lightmode = false
 // ative darkmode
 dark.addEventListener("click", () => {
@@ -45,12 +41,20 @@ dark.addEventListener("click", () => {
   lightmode = false
   localStorage.setItem('lightmode',lightmode)
 })
+let c = JSON.parse(localStorage.getItem('lightmode'))
+if(c == true ){
+  modify('flex','none','black','fafafa','ffffff')
+}else{
+  modify('none','flex','white','2b3743','202d36')
+}
 // active light mode
 light.addEventListener("click", () => {
   modify('flex','none','black','fafafa','ffffff')
   lightmode = true
   localStorage.setItem('lightmode',lightmode)
 })
+
+
 // creat the country card
 let cardcountry = function(data,one,two,three,four,five){
   let c = `
@@ -65,25 +69,33 @@ let cardcountry = function(data,one,two,three,four,five){
       </div>
 </div>
   `
-         country.innerHTML += c
+  country.innerHTML += c
 }
-// errore message
+
+
+
+// display errore message
 let error = function(mess){
   const message = document.querySelector(".message")
   const mark = document.querySelector(".fa-xmark")
+  const load = document.querySelector(".load")
   message.textContent = `${mess}` 
   alert.classList.replace("hidden","flex")
+  load.classList.add("hidden")
   mark.addEventListener("click", () => {
     alert.classList.replace("flex","hidden")
     location.reload();
   })
 }
+
+
+
 // display 50 country from the word randomly
 let displayall = async function(){
   try{
     let respone = await fetch(`https://restcountries.com/v3.1/all`)
     let data = await respone.json()
-    // countrydata = data
+    load.classList.add("hidden")
     for(let i =0; i < 48; i++){
       let num1 = Math.floor(Math.random() * (250 - 0 + 1)) + 0;
       countrydata.push(data[num1])
@@ -93,9 +105,11 @@ let displayall = async function(){
       cardcountry(data[num1].area,data[num1].flags.svg,data[num1].name.common,data[num1].population,data[num1].region,data[num1].capital)  
       }
   }catch(error){
-      console.error('Error fetching data:', error);
+      console.error('an Error happened');
     }
   }
+
+
 
   // function to find a country from the word
   let Findcountries =  async function(way,name){
@@ -108,6 +122,7 @@ let displayall = async function(){
         throw new Error('We were unable to find a country matching your search. Please make sure you have entered the correct name and try again')
       }
       let data =  await respone.json()
+      load.classList.add("hidden")
       countrydata = data
       let newdata = data.filter(function(data){
                 return data.name.common !== "Western Sahara"
@@ -143,6 +158,7 @@ select.addEventListener("click", () => {
   selectors.addEventListener("click", (e) => {
     p.textContent = e.target.textContent
     country.innerHTML = ""
+    load.classList.remove("hidden")
     Findcountries('region',`${e.target.textContent}`)
     selectors.classList.replace("block","hidden")
     arrowdown.style.display = "block"
@@ -154,6 +170,7 @@ select.addEventListener("click", () => {
 search.addEventListener("keydown", (e) => {
   if(e.key == "Enter"){
     country.innerHTML = ""
+    load.classList.remove("hidden")
     if(alert.classList.contains("flex")){
       alert.classList.replace("flex","hidden")
     }
@@ -161,6 +178,9 @@ search.addEventListener("keydown", (e) => {
     search.value = ""
   }
 })
+
+
+
 // give more information about the country
 country.addEventListener("click", (e) => {
   if(e.target.classList.contains("link")){
@@ -174,6 +194,4 @@ country.addEventListener("click", (e) => {
     })
   }
 })
-// localStorage.setItem("history",history)
-// console.log(history)
-// localStorage.setItem("history",JSON.stringify(history))
+localStorage.removeItem("history")
