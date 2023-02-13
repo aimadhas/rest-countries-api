@@ -1,4 +1,3 @@
-// Western Sahara
 const body = document.body
 const dark = document.querySelector(".fa-moon")
 const light = document.querySelector(".fa-sun")

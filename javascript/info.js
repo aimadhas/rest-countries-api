@@ -139,8 +139,6 @@ border.forEach(function(b){
   })
 })
 
-
-// active the backword button
 link.addEventListener("click", function(){
   if(history.length > 1){
     history.pop()
