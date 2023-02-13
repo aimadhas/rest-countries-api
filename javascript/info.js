@@ -145,6 +145,12 @@ link.addEventListener("click", function(){
     localStorage.setItem("history",JSON.stringify(history))
     let num = history.length - 1
     creathmtl(history[num])
+    const border = document.querySelectorAll(".border")
+border.forEach(function(b){
+  b.addEventListener("click", function(){
+    Findcountries(`${b.textContent}`)
+  })
+})
   }else{
     window.location.href= 'index.html'
   }
