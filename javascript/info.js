@@ -4,7 +4,7 @@ const light = document.querySelector(".fa-sun")
 const link = document.querySelector(".link")
 const contenaire = document.querySelector(".countainer")
 let lightmode = JSON.parse(localStorage.getItem("lightmode"))
-// const load = document.querySelector(".load")
+const load = document.querySelector(".load")
 let history = []
 //function modifate mode
 let modify = function(none,flex,secondaire,origine,color){
@@ -57,6 +57,7 @@ let creathmtl = function(data){
           <p class="text-xl">Border Countries:</p>
       </div>
   </div>`
+  load.classList.add("hidden")
   contenaire.innerHTML += c
   // add languages 
       let obj = data.languages
@@ -108,6 +109,18 @@ if(historydata){
 creathmtl(data)
 
 
+// select the name of the borders
+let borderselect = function(){
+  const border = document.querySelectorAll(".border")
+  border.forEach(function(b){
+    b.addEventListener("click", function(){
+      contenaire.innerHTML = ""
+      load.classList.remove("hidden")
+      Findcountries(`${b.textContent}`)
+    })
+})
+}
+
 
 // find the borders
 let Findcountries =  async function(name1){
@@ -115,42 +128,27 @@ let Findcountries =  async function(name1){
     let respone = await fetch(`https://restcountries.com/v3.1/alpha/${name1}`)
     let data1 =  await respone.json()
     data = data1[0]
-    // localStorage.setItem("name", JSON.stringify(data))
     history.push(data)
     localStorage.setItem("history",JSON.stringify(history))
     creathmtl(data)
-    const border = document.querySelectorAll(".border")
-      border.forEach(function(b){
-        b.addEventListener("click", function(){
-          Findcountries(`${b.textContent}`)
-        })
-})
+    borderselect()
   }catch(err){
     error("an error occured")
   }
 }
 
 
-// see more deatil about the border of the country
-const border = document.querySelectorAll(".border")
-border.forEach(function(b){
-  b.addEventListener("click", function(){
-    Findcountries(`${b.textContent}`)
-  })
-})
+borderselect()
 
 link.addEventListener("click", function(){
+  load.classList.remove("hidden")
   if(history.length > 1){
     history.pop()
     localStorage.setItem("history",JSON.stringify(history))
     let num = history.length - 1
     creathmtl(history[num])
     const border = document.querySelectorAll(".border")
-border.forEach(function(b){
-  b.addEventListener("click", function(){
-    Findcountries(`${b.textContent}`)
-  })
-})
+borderselect()
   }else{
     window.location.href= 'index.html'
   }
