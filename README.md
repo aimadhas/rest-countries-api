@@ -1,6 +1,6 @@
 # World Explorer
 
-s a web-based application that provides information about different countries around the world. With this app,
+ a web-based application that provides information about different countries around the world. With this app,
 you can explore countries and filter the countries based on their region. You can also search for any country you want 
 to learn more about and get detailed information about the selected country.
 # Templete
